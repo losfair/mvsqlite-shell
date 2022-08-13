@@ -9,7 +9,7 @@ RUN cd /root && apt update && \
 FROM ubuntu:20.04
 RUN cd /root && apt update && \
   apt install -y curl wget net-tools iputils-ping libsqlite3-dev && \
-  wget -O /root/libmvsqlite_preload.so https://github.com/losfair/mvsqlite/releases/download/v0.1.5/libmvsqlite_preload.so
+  wget -O /root/libmvsqlite_preload.so https://github.com/losfair/mvsqlite/releases/download/v0.1.8/libmvsqlite_preload.so
 COPY --from=0 /root/sqlite3 /usr/bin/
 COPY ./run.sh /
 CMD sleep infinity
