@@ -11,15 +11,15 @@ WORKDIR /root
 RUN apt update && apt install -y libsqlite3-dev git
 RUN git clone https://github.com/losfair/postlite-mv && \
   cd postlite-mv && \
-  git checkout d0451c2352d22f0316430b78dac9222ed92aaa97 && \
+  git checkout 7e852011790d5adc7d5e2f51f663a11d2f98b4b5 && \
   ./build.sh
 
 FROM ubuntu:20.04
 RUN cd /root && apt update && \
-  apt install -y curl wget net-tools iputils-ping libsqlite3-0 libreadline8 tinyproxy-bin && \
+  apt install -y curl wget net-tools iputils-ping libsqlite3-0 libreadline8 && \
   wget -O /root/libmvsqlite_preload.so https://github.com/losfair/mvsqlite/releases/download/v0.1.9/libmvsqlite_preload.so
 COPY --from=sqlite-build /root/sqlite3 /usr/bin/
 COPY --from=postlite-build /root/postlite-mv/postlite /usr/bin/
 COPY ./run.sh ./service.sh /
-COPY ./.sqliterc ./tinyproxy.conf ./allow.txt /root/
+COPY ./.sqliterc /root/
 CMD /service.sh
