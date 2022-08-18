@@ -1,3 +1,3 @@
 #!/bin/bash
 
-LD_PRELOAD=/root/libmvsqlite_preload.so exec postlite
+LD_PRELOAD=/root/libmvsqlite_preload.so RUST_LOG=info exec postlite
