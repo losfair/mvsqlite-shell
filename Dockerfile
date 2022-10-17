@@ -19,7 +19,7 @@ RUN git clone https://github.com/losfair/postlite-mv && \
 FROM ubuntu:20.04
 RUN cd /root && apt update && \
   apt install -y curl wget net-tools iputils-ping libreadline8 && \
-  wget -O /usr/lib/libsqlite3.so.0 https://github.com/losfair/mvsqlite/releases/download/v0.1.18-9/libsqlite3.so && \
+  wget -O /usr/lib/libsqlite3.so.0 https://github.com/losfair/mvsqlite/releases/download/v0.3.0-beta.1-1/libsqlite3.so && \
   ln -s /usr/lib/libsqlite3.so.0 /usr/lib/libsqlite3.so
 COPY --from=sqlite-build /root/sqlite3 /usr/bin/
 COPY --from=postlite-build /root/postlite-mv/postlite /usr/bin/
